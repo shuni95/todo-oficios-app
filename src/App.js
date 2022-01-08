@@ -1,16 +1,11 @@
 import { Component } from 'react';
 import './App.css';
 import landingImage from './landing-image.png';
-import { Header } from './Header';
-import { Footer } from './Footer';
-import { MobileNav } from './MobileNav';
 
 export class App extends Component {
   render() {
     return (
       <div className="flex flex-col h-full">
-        <Header/>
-        <MobileNav/>
         <section className='flex flex-col h-full px-4 py-8 md:px-0 md:py-16 bg-amber-200'>
           <div className='flex flex-col items-center'>
             <h1 className='text-4xl sm:text-6xl font-bold'>TodoOfficios</h1>
@@ -42,9 +37,8 @@ export class App extends Component {
           </div>
         </section>
         <div className='invisible md:visible absolute bottom-[55px] left-[-65px]'>
-            <img src={landingImage} alt="Imagen de landing de un detective"/>
-          </div>
-        <Footer/>
+          <img src={landingImage} alt="Imagen de landing de un detective"/>
+        </div>
       </div>
     )
   }

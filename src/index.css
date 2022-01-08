@@ -12,15 +12,13 @@ code {
     monospace;
 }
 
-html, body {
+html, body, #root {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-#root {
-  display: flex;
-  flex-direction: column;
+main {
   height: 100%;
 }
 

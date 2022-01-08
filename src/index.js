@@ -1,20 +1,22 @@
 import { render } from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 import { Login } from './Login';
 import { UserRegister } from './UserRegister';
+import Layout from './Layout';
 
 render(
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<UserRegister/>}/>
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<App/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={<UserRegister/>}/>
+        </Routes>
+      </Layout>
     </BrowserRouter>,
   document.getElementById('root')
 );
