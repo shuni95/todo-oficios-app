@@ -10,6 +10,7 @@ export function SearchResults() {
     return (
         <section className='flex flex-row h-full bg-amber-200 pt-8'>
             <div className='flex flex-col sm:basis-2/5 lg:max-w-[320px] px-4 md:px-8'>
+                <form className='flex flex-col'>
                 <h2 className='text-md font-semibold'>Filtros</h2>
                 <fieldset className='border border-solid border-black px-4 py-2'>
                     <legend>Distritos</legend>
@@ -34,6 +35,11 @@ export function SearchResults() {
                         ))
                     }
                 </fieldset>
+
+                <div className='mt-4'>
+                    <button className='w-full p-2 bg-emerald-400 text-white uppercase shadow-sm'>Buscar</button>
+                </div>
+                </form>
             </div>
 
             <div className='flex flex-col sm:basis-3/5 lg:basis-full overflow-y-scroll pb-20 space-y-4'>

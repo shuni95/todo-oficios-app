@@ -1,4 +1,5 @@
-import { Component } from 'react';
+import { getDistritos } from './data';
+import { getOficios } from './data';
 import { useSearchParams } from 'react-router-dom';
 import './App.css';
 import landingImage from './landing-image.png';
@@ -6,14 +7,15 @@ import { SearchResults } from './SearchResults';
 
 export function App() {
   let [searchParams, setSearchParams] = useSearchParams();
+  let distritos = getDistritos();
+  let oficios = getOficios();
 
-
-  let especialidad = searchParams.get('especialidad');
-  let distrito = searchParams.get('distrito');
+  let especialidadSelected = searchParams.get('especialidad');
+  let distritoSelected = searchParams.get('distrito');
   console.info(searchParams.get('especialidad'));
   //console.info(searchParams.getAll());
 
-    if (especialidad || distrito) {
+    if (especialidadSelected || distritoSelected) {
       // Get data from... somewhere and put it in the results component
 
       return (
@@ -32,20 +34,21 @@ export function App() {
             <form className='flex space-y-4 md:space-y-0 flex-col md:flex-row w-full sm:w-3/5 md:w-1/2 justify-center'>
               <select className="block w-full max-w-full md:max-w-[300px] mt-0 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" 
                 name="especialidad" title="Especialidad">
-                <option value="">Categoria</option>
-                <option value="1">Plomeria</option>
-                <option value="2">Carpinteria</option>
-                <option value="3">Pintura</option>
-                <option value="99">Otros</option>
+                <option value="">Especialidad</option>
+                {
+                  oficios.map(oficio => (
+                    <option key={oficio.name} value={oficio.name}>{oficio.name}</option>
+                  ))
+                }
               </select>
               <select className="block w-full max-w-full md:max-w-[200px] mt-0 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
                 name="distrito" title="Distrito">
                 <option value="">Distrito</option>
-                <option value="1">Ate</option>
-                <option value="2">La Molina</option>
-                <option value="3">Miraflores</option>
-                <option value="4">San Isidro</option>
-                <option value="5">Surco</option>
+                {
+                  distritos.map(distrito => (
+                    <option key={distrito.name} value={distrito.name}>{distrito.name}</option>
+                  ))
+                }
               </select>
               <div className='ml-2'>
                 <button className='w-[100px] p-2 bg-emerald-400 text-white uppercase shadow-sm' onClick={event => {
