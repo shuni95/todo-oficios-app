@@ -20,6 +20,7 @@ html, body, #root {
 
 main {
   height: 100%;
+  overflow: hidden;
 }
 
 @tailwind base;
@@ -31,6 +32,11 @@ main {
   [type="text"], 
   textarea {
     @apply border-amber-400 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 placeholder:italic placeholder:text-gray-400;
+  }
+
+  [type="radio"],
+  [type="checkbox"] {
+    @apply border-amber-400 focus:ring-amber-500 text-amber-400;
   }
 
 }

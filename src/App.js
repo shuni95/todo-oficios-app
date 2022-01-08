@@ -1,9 +1,26 @@
 import { Component } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './App.css';
 import landingImage from './landing-image.png';
+import { SearchResults } from './SearchResults';
 
-export class App extends Component {
-  render() {
+export function App() {
+  let [searchParams, setSearchParams] = useSearchParams();
+
+
+  let especialidad = searchParams.get('especialidad');
+  let distrito = searchParams.get('distrito');
+  console.info(searchParams.get('especialidad'));
+  //console.info(searchParams.getAll());
+
+    if (especialidad || distrito) {
+      // Get data from... somewhere and put it in the results component
+
+      return (
+        <SearchResults />
+      )
+    }
+
     return (
       <div className="flex flex-col h-full">
         <section className='flex flex-col h-full px-4 py-8 md:px-0 md:py-16 bg-amber-200'>
@@ -22,7 +39,7 @@ export class App extends Component {
                 <option value="99">Otros</option>
               </select>
               <select className="block w-full max-w-full md:max-w-[200px] mt-0 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
-                name="Distrito" title="Distrito">
+                name="distrito" title="Distrito">
                 <option value="">Distrito</option>
                 <option value="1">Ate</option>
                 <option value="2">La Molina</option>
@@ -31,7 +48,9 @@ export class App extends Component {
                 <option value="5">Surco</option>
               </select>
               <div className='ml-2'>
-                <button className='w-[100px] p-2 bg-emerald-400 text-white uppercase shadow-sm'>Buscar</button>
+                <button className='w-[100px] p-2 bg-emerald-400 text-white uppercase shadow-sm' onClick={event => {
+
+                }}>Buscar</button>
               </div>
             </form>
           </div>
@@ -41,5 +60,5 @@ export class App extends Component {
         </div>
       </div>
     )
-  }
+  
 }
