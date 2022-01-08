@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { Login } from './Login';
 import { UserRegister } from './UserRegister';
 import Layout from './Layout';
+import { JoinPro } from './JoinPro';
 
 render(
     <BrowserRouter>
@@ -15,6 +16,7 @@ render(
           <Route path="/" element={<App/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<UserRegister/>}/>
+          <Route path="/joinPro" element={<JoinPro/>}/>
         </Routes>
       </Layout>
     </BrowserRouter>,

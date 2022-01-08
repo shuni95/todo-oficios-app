@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-export class ProfessionalRegister extends Component {
+export class JoinPro extends Component {
     render() {
         return (
             <div>
