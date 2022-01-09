@@ -28,7 +28,8 @@ main {
 @layer base {
 
   [type="text"], 
-  textarea {
+  textarea,
+  select {
     @apply border-amber-400 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 placeholder:italic placeholder:text-gray-400;
   }
 

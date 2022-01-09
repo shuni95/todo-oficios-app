@@ -51,7 +51,7 @@ export function App() {
                 }
               </select>
               <div className='ml-2'>
-                <button className='w-[100px] p-2 bg-emerald-400 text-white uppercase shadow-sm' onClick={event => {
+                <button className='w-[100px] p-2 bg-emerald-400 text-white uppercase' onClick={event => {
 
                 }}>Buscar</button>
               </div>

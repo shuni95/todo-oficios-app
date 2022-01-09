@@ -1,50 +1,46 @@
-import { Component } from "react";
+import { Component, useEffect, useState } from "react";
+import { getDistritos, getOficios } from "./data";
 
-export class JoinPro extends Component {
-    render() {
-        return (
-            <section className='flex flex-col h-full px-4 py-8 md:px-0 md:py-16 bg-amber-200'>
-                <form className="flex flex-row w-full md:px-[25%] lg:px-[30%] space-y-2">
-                    <div className="flex flex-col">
-                        <p>Aca deberia estar la foto</p>
-                    </div>
-                    <div className="flex flex-col">
+
+
+export function JoinPro() {
+    let [distritos, setDistritos] = useState([]);
+    let [oficios, setOficios] = useState([]);
+
+    useEffect(() => {
+        setDistritos(getDistritos());
+    }, []);
+
+    useEffect(() => {
+        setOficios(getOficios());
+    }, []);
+    
+
+    return (
+        <section className='flex flex-col h-full px-4 py-8 md:px-0 md:py-16 bg-white'>
+            <form className="flex flex-row w-full md:px-[25%] lg:px-[30%]">
+                <div className="flex flex-col space-y-2">
                     <div>
                         <h2 className="text-xl font-bold">Datos personales</h2>
                     </div>
                     
-                    <div className="flex flex-col md:max-w-[320px]">
+                    <div className="flex flex-col">
                         <label htmlFor="nombres">Nombres</label>
                         <input type="text" name="nombres" placeholder="Nombres" className=""/>
                     </div>
                     
-                    <div className="flex flex-col md:max-w-[320px]">
+                    <div className="flex flex-col">
                         <label htmlFor="apellidos">Apellidos</label>
                         <input type="text" name="apellidos" placeholder="Apellidos"/>
-                    </div>
-                    
-                    <div className="flex flex-row space-x-4 md:max-w-[320px]">
-                        <div className="flex flex-col w-[100px]">
-                            <label htmlFor="edad">Edad</label>
-                            <input type="text" name="edad" placeholder="Edad"/>
-                        </div>
-                        <div className="flex flex-col">
-                            <label htmlFor="dni">DNI</label>
-                            <input type="text" name="dni" placeholder="DNI"/>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h2 className="text-xl font-bold">Datos profesionales</h2>
                     </div>
 
                     <div className="flex flex-row space-x-4">
                         <div className="flex flex-col basis-1/2">
-                            <label htmlFor="ruc">RUC</label>
-                            <input type="text" name="RUC" placeholder="RUC"/>
+                            <label htmlFor="ruc">DNI</label>
+                            <input type="text" name="dni" placeholder="RUC"/>
                         </div>
                         <div className="flex flex-col basis-1/2">
-                            <label htmlFor="dni">DNI</label>
+                            <label htmlFor="telefono">Telefono</label>
                             <input type="text" name="telefono" placeholder="Telefono"/>
                         </div>
                     </div>
@@ -56,21 +52,34 @@ export class JoinPro extends Component {
 
                     <div className="flex flex-col w-full">
                         <label htmlFor="sobre_mi">Sobre mi</label>
-                        <textarea name="sobre_mi" placeholder="Descripcion"></textarea>
+                        <textarea name="sobre_mi" rows="4" placeholder="Descripcion"></textarea>
                     </div>
 
                     <div className="flex flex-col w-full">
                         <label htmlFor="distrito">Distrito</label>
-                        <input type="text" name="distrito" placeholder="Distrito"/>
+                        <select name="distrito">
+                        <option value="">Distrito</option>
+                        {distritos.map(distrito => (
+                            <option key={distrito.name} value={distrito.name}>{distrito.name}</option>
+                        ))}
+                        </select>
                     </div>
 
                     <div className="flex flex-col w-full">
-                        <label htmlFor="oficio">Oficio</label>
-                        <input type="text" name="oficio" placeholder="Oficio"/>
+                        <label htmlFor="especialidad">Oficio</label>
+                        <select name="especialidad">
+                        <option value="">Especialidad</option>
+                        {oficios.map(oficio => (
+                            <option key={oficio.name} value={oficio.name}>{oficio.name}</option>
+                        ))}
+                        </select>
                     </div>
+                    
+                    <div className="flex flex-col pt-4 items-end">
+                        <button className='py-2 px-6 bg-emerald-400 text-white uppercase font-bold'>Registrar</button>
                     </div>
-                </form>
-            </section>
-        )
-    }
+                </div>
+            </form>
+        </section>
+    )
 }
