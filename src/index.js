@@ -8,6 +8,7 @@ import { Login } from './Login';
 import { UserRegister } from './UserRegister';
 import Layout from './Layout';
 import { JoinPro } from './JoinPro';
+import { Professional } from './Professional';
 
 render(
     <BrowserRouter>
@@ -17,6 +18,7 @@ render(
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<UserRegister/>}/>
           <Route path="/joinPro" element={<JoinPro/>}/>
+          <Route path="/professional/:proId" element={<Professional/>} />
         </Routes>
       </Layout>
     </BrowserRouter>,

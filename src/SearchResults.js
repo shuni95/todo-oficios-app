@@ -1,11 +1,11 @@
 import { getDistritos } from './data';
 import { getOficios } from './data';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 export function SearchResults() {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -55,7 +55,7 @@ export function SearchResults() {
                 
                     <div className='bg-white p-6 mx-8'>
                         <div>
-                            <h3 className='text-lg font-semibold'>Antonio Vargas</h3>
+                            <h3 className='text-lg font-semibold text-blue-700'><Link to={`/professional/1`}>Antonio Vargas</Link></h3>
                             <p className='mt-2'><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className='ml-2'>El Agustino - </span><FontAwesomeIcon icon={faPhone} color='blue'/> <span className='ml-2'>989101989</span></p>
                             <p><FontAwesomeIcon icon={faBuilding}/> <span className='ml-2'>Mz A Lt 21 Av. San Jeronimo</span></p>
                             <p><FontAwesomeIcon icon={faEnvelope} color='silver'/> <span className='ml-2'>avargas@gmail.com</span></p>
@@ -63,7 +63,7 @@ export function SearchResults() {
                         </div>
                         <div className='mt-2 flex flex-row'>
                             <p className='text-gray-700 border border-solid border-black px-3 py-1'>Gasfitero</p>
-                            <button className='uppercase bg-red-700 px-4 py-1 text-white ml-auto xl:ml-8'>Ver perfil</button>
+                            <Link className='uppercase bg-red-700 px-4 py-1 text-white ml-auto xl:ml-8' to={`/professional/1?especialidad=${searchParams.get('especialidad')}&distrito=${searchParams.get('distrito')}`}>Ver perfil</Link>
                         </div>
                     </div>
                 
