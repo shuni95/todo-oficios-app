@@ -1,5 +1,4 @@
 import React from "react";
-import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { MobileNav } from "./MobileNav";
 
@@ -9,7 +8,6 @@ const Layout = ({ children }) => {
             <Header/>
             <MobileNav/>
             <main>{ children }</main>
-            <Footer/>
         </React.Fragment>
     )
 }

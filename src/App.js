@@ -32,7 +32,7 @@ export function App() {
           </div>
           <div className='flex flex-col items-center mt-4'>
             <form className='flex space-y-4 md:space-y-0 flex-col md:flex-row w-full sm:w-3/5 md:w-1/2 justify-center'>
-              <select className="block w-full max-w-full md:max-w-[300px] mt-0 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" 
+              <select className="w-full max-w-full md:max-w-[300px] mt-0 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" 
                 name="especialidad" title="Especialidad">
                 <option value="">Especialidad</option>
                 {
@@ -41,7 +41,7 @@ export function App() {
                   ))
                 }
               </select>
-              <select className="block w-full max-w-full md:max-w-[200px] mt-0 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
+              <select className="w-full max-w-full md:max-w-[200px] mt-0 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black"
                 name="distrito" title="Distrito">
                 <option value="">Distrito</option>
                 {
