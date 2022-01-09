@@ -6,25 +6,37 @@ import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from 'react';
 
 export function SearchResults() {
     let [searchParams, setSearchParams] = useSearchParams();
-    let distritos = getDistritos();
+    let [distritos, setDistritos] = useState(getDistritos());
+    let [distrito, setDistrito] = useState(searchParams.get('distrito'));
+    let [especialidad, setEspecialidad] = useState(searchParams.get('especialidad'));
     let oficios = getOficios();
+    
+    // useEffect(() => {
+    //     fetch('https://api.github.com/users/shuni95')
+    //         .then(res => res.json())
+    //         .then(result => {
+    //             console.info(result);
+    //         });
+    // }, []);
   
     return (
         <section className='flex flex-row h-full bg-gray-200 pt-8 xl:px-[150px]'>
             <div className='flex flex-col sm:basis-2/5 lg:max-w-[320px] px-4 md:px-8'>
-                <form className='flex flex-col'>
+                <form className='flex flex-col' onSubmit={() => setSearchParams({'distrito': distrito, 'especialidad': especialidad})}>
                 <h2 className='text-xl font-semibold'>Filtros</h2>
                 
                 <div className='border border-solid border-black bg-white px-4 py-3 mt-6'>
                     <h2 className='text-lg font-semibold'>Distritos</h2>
                     <div className='max-h-48 overflow-y-scroll space-y-1 pl-1 mt-3 pb-2'>
                     {
-                        distritos.map(distrito => (
-                            <div className='flex flex-row items-center' key={distrito.name}>
-                                <input type="radio" name='distrito' value={distrito.name}/><span className='ml-2'>{distrito.name}</span>
+                        distritos.map(d => (
+                            <div className='flex flex-row items-center' key={d.name}>
+                                <input type="radio" name='distrito' value={d.name} checked={d.name === distrito} onChange={() => setDistrito(d.name)}/>
+                                <span className='ml-2'>{d.name}</span>
                             </div>
                         ))
                     }
@@ -37,7 +49,8 @@ export function SearchResults() {
                     {
                         oficios.map(oficio => (
                             <div className='flex flex-row items-center' key={oficio.name}>
-                                <input type="radio" name='especialidad' value={oficio.name}/><span className='ml-2'>{oficio.name}</span>
+                                <input type="radio" name='especialidad' value={oficio.name} checked={oficio.name === especialidad} onChange={() => setEspecialidad(oficio.name)}/>
+                                <span className='ml-2'>{oficio.name}</span>
                             </div>
                         ))
                     }
