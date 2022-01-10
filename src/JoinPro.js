@@ -1,15 +1,12 @@
-import { Component, useEffect, useState } from "react";
-import { getDistritos, getOficios } from "./data";
-
+import { useEffect, useState } from "react";
+import { getOficios } from "./data";
+import { useFetchDistritos } from "./RestConsumer";
 
 
 export function JoinPro() {
-    let [distritos, setDistritos] = useState([]);
     let [oficios, setOficios] = useState([]);
 
-    useEffect(() => {
-        setDistritos(getDistritos());
-    }, []);
+    const distritos = useFetchDistritos();
 
     useEffect(() => {
         setOficios(getOficios());
@@ -60,7 +57,7 @@ export function JoinPro() {
                         <select name="distrito">
                         <option value="">Distrito</option>
                         {distritos.map(distrito => (
-                            <option key={distrito.name} value={distrito.name}>{distrito.name}</option>
+                            <option key={distrito.idDistrito} value={distrito.nombreDistrito}>{distrito.nombreDistrito}</option>
                         ))}
                         </select>
                     </div>

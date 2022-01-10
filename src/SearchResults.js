@@ -1,4 +1,4 @@
-import { getDistritos } from './data';
+import { useFetchDistritos } from './RestConsumer';
 import { getOficios } from './data';
 import { Link, useSearchParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,22 +6,15 @@ import { faBuilding } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export function SearchResults() {
     let [searchParams, setSearchParams] = useSearchParams();
-    let [distritos, setDistritos] = useState(getDistritos());
+    const distritos = useFetchDistritos();
     let [distrito, setDistrito] = useState(searchParams.get('distrito'));
     let [especialidad, setEspecialidad] = useState(searchParams.get('especialidad'));
     let oficios = getOficios();
     
-    // useEffect(() => {
-    //     fetch('https://api.github.com/users/shuni95')
-    //         .then(res => res.json())
-    //         .then(result => {
-    //             console.info(result);
-    //         });
-    // }, []);
   
     return (
         <section className='flex flex-row h-full bg-gray-200 pt-8 xl:px-[150px]'>
@@ -34,9 +27,9 @@ export function SearchResults() {
                     <div className='max-h-48 overflow-y-scroll space-y-1 pl-1 mt-3 pb-2'>
                     {
                         distritos.map(d => (
-                            <div className='flex flex-row items-center' key={d.name}>
-                                <input type="radio" name='distrito' value={d.name} checked={d.name === distrito} onChange={() => setDistrito(d.name)}/>
-                                <span className='ml-2'>{d.name}</span>
+                            <div className='flex flex-row items-center' key={d.idDistrito}>
+                                <input type="radio" name='distrito' value={d.nombreDistrito} checked={d.nombreDistrito === distrito} onChange={() => setDistrito(d.name)}/>
+                                <span className='ml-2'>{d.nombreDistrito}</span>
                             </div>
                         ))
                     }

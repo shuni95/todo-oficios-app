@@ -9,12 +9,14 @@ import { UserRegister } from './UserRegister';
 import Layout from './Layout';
 import { JoinPro } from './JoinPro';
 import { Professional } from './Professional';
+import { SearchResults } from './SearchResults';
 
 render(
     <BrowserRouter>
       <Layout>
         <Routes>
           <Route path="/" element={<App/>}/>
+          <Route path="/busqueda" element={<SearchResults/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<UserRegister/>}/>
           <Route path="/joinPro" element={<JoinPro/>}/>
