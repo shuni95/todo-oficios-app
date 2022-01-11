@@ -26,7 +26,7 @@ export function SearchResults() {
                     {
                         distritos.map(d => (
                             <div className='flex flex-row items-center' key={d.idDistrito}>
-                                <input type="radio" name='distrito' value={d.nombreDistrito} checked={d.nombreDistrito === distrito} onChange={() => setDistrito(d.idDistrito)}/>
+                                <input type="radio" name='distrito' value={d.idDistrito} checked={d.idDistrito === parseInt(distrito)} onChange={() => setDistrito(d.idDistrito)}/>
                                 <span className='ml-2'>{d.nombreDistrito}</span>
                             </div>
                         ))
@@ -40,7 +40,7 @@ export function SearchResults() {
                     {
                         especialidades.map(esp => (
                             <div className='flex flex-row items-center' key={esp.idEspecialidad}>
-                                <input type="radio" name='especialidad' value={esp.idEspecialidad} checked={esp.nombreEspecialidad === especialidad} onChange={() => setEspecialidad(esp.idEspecialidad)}/>
+                                <input type="radio" name='especialidad' value={esp.idEspecialidad} checked={esp.idEspecialidad === parseInt(especialidad)} onChange={() => setEspecialidad(esp.idEspecialidad)}/>
                                 <span className='ml-2'>{esp.nombreEspecialidad}</span>
                             </div>
                         ))
