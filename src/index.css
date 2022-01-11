@@ -29,7 +29,8 @@ main {
 
   [type="text"], 
   textarea,
-  select {
+  select,
+  select[multiple] {
     @apply border-amber-400 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 placeholder:italic placeholder:text-gray-400;
   }
 

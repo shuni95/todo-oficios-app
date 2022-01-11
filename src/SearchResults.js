@@ -1,4 +1,4 @@
-import { useFetchDistritos, useFetchEspecialidades } from './RestConsumer';
+import useFetch, { useFetchEspecialidades } from './RestConsumer';
 import { Link, useSearchParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 export function SearchResults() {
     let [searchParams, setSearchParams] = useSearchParams();
-    const distritos = useFetchDistritos();
+    const {distritosStatus, distritos} = useFetch('/api/distritos');
     const especialidades = useFetchEspecialidades();
     let [distrito, setDistrito] = useState(searchParams.get('distrito'));
     let [especialidad, setEspecialidad] = useState(searchParams.get('especialidad'));

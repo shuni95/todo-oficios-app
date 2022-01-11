@@ -1,49 +1,50 @@
 import { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 
-let cachedData = {};
+const cachedData = {};
 
-export function useFetchDistritos() {
+const useFetch = (url) => {
     const [distritos, setDistritos] = useState([]);
+    const [status, setStatus] = useState('idle');
 
-    console.info('cacheDate', cachedData);
     useEffect(() => {
-        if (!cachedData.hasOwnProperty('distritos')) {
-            fetch(process.env.REACT_APP_BASE_URL + '/api/distritos')
-            .then(response => response.json())
-            .then(results => {
-                if (results.length > 0) {
-                    cachedData['distritos'] = results;
-                }
-                setDistritos(results)
-            }, error => {
-                console.error(error);
-            });
-        } else {
-            setDistritos(cachedData['distritos']);
-        }
-    }, []);
+        const fetchData = async () => {
+            setStatus('fetching');
+            if (!cachedData[url]) {
+                const response = await fetch(process.env.REACT_APP_BASE_URL + url);
+                const data = await response.json();
+                cachedData[url] = data;
+                setDistritos(data);
+                setStatus('fetched');
+            } else {
+                setDistritos(cachedData[url]);
+                setStatus('fetched');
+            }
+        };
+
+        fetchData();
+    }, [url]);
     
     
-    return distritos;
+    return {status, distritos};
 }
+
+export default useFetch;
 
 export function useFetchEspecialidades() {
     const [especialidades, setEspecialidades] = useState([]);
     const [errorFetchChecker, setErrorFetchChecker] = useState(0);
 
     useEffect(() => {
-        console.info(cachedData.hasOwnProperty('especialidades'));
         if (!cachedData.hasOwnProperty('especialidades')) {
             fetch(process.env.REACT_APP_BASE_URL + '/api/especialidades')
             .then(response => response.json())
             .then(results => {
-                console.info(typeof results);
                 if (results.length > 0) {
                     cachedData['especialidades'] = results;
                 }
                 setEspecialidades(results);
-            }, error => {
+            }, _ => {
                 if (errorFetchChecker < 5) { 
                     setErrorFetchChecker(errorFetchChecker + 1);
                 }

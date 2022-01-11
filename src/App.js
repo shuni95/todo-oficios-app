@@ -1,11 +1,11 @@
-import { useFetchDistritos, useFetchEspecialidades } from './RestConsumer';
+import useFetch, { useFetchEspecialidades } from './RestConsumer';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 import landingImage from './landing-image.png';
 import { useState } from 'react';
 
 export function App() {
-  const distritos = useFetchDistritos();
+  const {distritosStatus, distritos} = useFetch('/api/distritos');
   const especialidades = useFetchEspecialidades();
   let navigate = useNavigate();
 
