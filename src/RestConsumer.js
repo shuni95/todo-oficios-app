@@ -28,6 +28,23 @@ export function useFetchDistritos() {
     return distritos;
 }
 
-export function useFetchOficios() {
+export function useFetchEspecialidades() {
+    const [especialidades, setEspecialidades] = useState([]);
 
+    useEffect(() => {
+        if (!cachedData.hasOwnProperty('especialidades')) {
+            fetch(process.env.REACT_APP_BASE_URL + '/api/especialidades')
+            .then(response => response.json())
+            .then(results => {
+                if (results.length > 0) {
+                    cachedData['especialidades'] = results;
+                }
+                setEspecialidades(results);
+            }, error => {
+                console.error(error);
+            });
+        } else {
+            setEspecialidades(cachedData['especialidades']);
+        }
+    });
 }

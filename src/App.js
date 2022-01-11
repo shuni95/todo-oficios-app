@@ -1,5 +1,4 @@
-import { useFetchDistritos } from './RestConsumer';
-import { getOficios } from './data';
+import { useFetchDistritos, useFetchEspecialidades } from './RestConsumer';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 import landingImage from './landing-image.png';
@@ -7,8 +6,8 @@ import { useState } from 'react';
 
 export function App() {
   const distritos = useFetchDistritos();
+  const especialidades = useFetchEspecialidades();
   let navigate = useNavigate();
-  let oficios = getOficios();
 
   let [especialidad, setEspecialidad] = useState();
   let [distrito, setDistrito] = useState();
@@ -27,8 +26,8 @@ export function App() {
               name="especialidad" title="Especialidad" onChange={(e) => setEspecialidad(parseInt(e.target.value)) }>
               <option value="">Especialidad</option>
               {
-                oficios.map(oficio => (
-                  <option key={oficio.name} value={oficio.name}>{oficio.name}</option>
+                especialidades.map(especialidad => (
+                  <option key={especialidad.idEspecialidad} value={especialidad.idEspecialidad}>{especialidad.nombreEspecialidad}</option>
                 ))
               }
             </select>

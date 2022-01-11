@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
-import { getOficios } from "./data";
-import { useFetchDistritos } from "./RestConsumer";
+import { useFetchDistritos, useFetchEspecialidades } from "./RestConsumer";
 
 
 export function JoinPro() {
-    let [oficios, setOficios] = useState([]);
-
     const distritos = useFetchDistritos();
-
-    useEffect(() => {
-        setOficios(getOficios());
-    }, []);
-    
+    const especialidades = useFetchEspecialidades();
 
     return (
         <section className='flex flex-col h-full px-4 py-8 md:px-0 md:py-16 bg-white'>
@@ -66,8 +58,8 @@ export function JoinPro() {
                         <label htmlFor="especialidad">Oficio</label>
                         <select name="especialidad">
                         <option value="">Especialidad</option>
-                        {oficios.map(oficio => (
-                            <option key={oficio.name} value={oficio.name}>{oficio.name}</option>
+                        {especialidades.map(especialidad => (
+                            <option key={especialidad.idEspecialidad} value={especialidad.idEspecialidad}>{especialidad.nombreEspecialidad}</option>
                         ))}
                         </select>
                     </div>
