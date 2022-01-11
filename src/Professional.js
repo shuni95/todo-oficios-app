@@ -26,14 +26,13 @@ export function Professional() {
                     <p className='mt-2'><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className='ml-2'>El Agustino - </span><FontAwesomeIcon icon={faPhone} color='blue'/> <span className='ml-2'>989101989</span></p>
                     <p><FontAwesomeIcon icon={faBuilding}/> <span className='ml-2'>Mz A Lt 21 Av. San Jeronimo</span></p>
                     <p><FontAwesomeIcon icon={faEnvelope} color='silver'/> <span className='ml-2'>avargas@gmail.com</span></p>
-                    <p className='mt-2'>Ofrezco servicio 7u7 de gasfitería y electricidad, reparación e instalación de calefacción, destape de cámara de alcantarillado y cañerias de desague, trabajo en pvc y cobre. Interesados llamar al 989101989.</p>
+                    <p className='mt-2'>Ofrezco servicio de gasfitería y electricidad, reparación e instalación de calefacción, destape de cámara de alcantarillado y cañerias de desague, especialista en pvc. Interesados llamar al 989101989.</p>
                 </div>
                 <div className="mt-4">
-                    <Link className="uppercase bg-gray-700 px-4 py-1 text-white" to={`/?especialidad=${searchParams.get('especialidad')}`}>Regresar</Link>
+                    <Link className="uppercase bg-gray-700 px-4 py-1 text-white" to={`/busqueda?especialidad=${searchParams.get('especialidad')}&distrito=${searchParams.get('distrito')}`}>Regresar</Link>
+                    <Link className="ml-2 uppercase bg-emerald-600 text-white px-4 py-1" to={`/nuevoProyecto?profesional=${params.proId}&usuario=1&especialidad=${searchParams.get('especialidad')}&distrito=${searchParams.get('distrito')}`}>Solicitar proyecto</Link>
                 </div>
             </div>
-
-
 
             <div className="bg-white mt-4 px-8 py-6 xl:w-3/5 space-y-6">
                 <div className="mt-2">
@@ -44,7 +43,7 @@ export function Professional() {
                         <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>Gasfitero</p>
                     </div>
                     <div className="mt-2">
-                        <p><FontAwesomeIcon icon={faCheckCircle} color="green"/><span className="ml-2">Comentario: Buen trato y puntual. Luego hicimos el sinrespeto y cumplio. 10/10.</span></p>
+                        <p><FontAwesomeIcon icon={faCheckCircle} color="green"/><span className="ml-2">Comentario: Buen trato y puntual. 10/10.</span></p>
                         <p><FontAwesomeIcon icon={faCalendar} color="purple"/> <span className="ml-2">Fecha: 02/01/2022</span></p>
                         <p><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className="ml-2">Callao</span></p>
                         <p><FontAwesomeIcon icon={faUser}/> <span className="ml-2">Piero Loza Palma</span></p>
@@ -55,7 +54,7 @@ export function Professional() {
                         <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>Gasfitero</p>
                     </div>
                     <div className="mt-2">
-                        <p><FontAwesomeIcon icon={faCheckCircle} color="green"/><span className="ml-2">Comentario: Buen trato y puntual. Luego hicimos el sinrespeto y cumplio. 10/10.</span></p>
+                        <p><FontAwesomeIcon icon={faCheckCircle} color="green"/><span className="ml-2">Comentario: Buen trato y puntual. 10/10.</span></p>
                         <p><FontAwesomeIcon icon={faCalendar} color="purple"/> <span className="ml-2">Fecha: 02/01/2022</span></p>
                         <p><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className="ml-2">Callao</span></p>
                         <p><FontAwesomeIcon icon={faUser}/> <span className="ml-2">Piero Loza Palma</span></p>
@@ -66,7 +65,7 @@ export function Professional() {
                         <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>Gasfitero</p>
                     </div>
                     <div className="mt-2">
-                        <p><FontAwesomeIcon icon={faCheckCircle} color="green"/><span className="ml-2">Comentario: Buen trato y puntual. Luego hicimos el sinrespeto y cumplio. 10/10.</span></p>
+                        <p><FontAwesomeIcon icon={faCheckCircle} color="green"/><span className="ml-2">Comentario: Buen trato y puntual. 10/10.</span></p>
                         <p><FontAwesomeIcon icon={faCalendar} color="purple"/> <span className="ml-2">Fecha: 02/01/2022</span></p>
                         <p><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className="ml-2">Callao</span></p>
                         <p><FontAwesomeIcon icon={faUser}/> <span className="ml-2">Piero Loza Palma</span></p>

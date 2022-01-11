@@ -41,7 +41,7 @@ export function SearchResults() {
                         especialidades.map(esp => (
                             <div className='flex flex-row items-center' key={esp.idEspecialidad}>
                                 <input type="radio" name='especialidad' value={esp.idEspecialidad} checked={esp.nombreEspecialidad === especialidad} onChange={() => setEspecialidad(esp.idEspecialidad)}/>
-                                <span className='ml-2'>{esp.name}</span>
+                                <span className='ml-2'>{esp.nombreEspecialidad}</span>
                             </div>
                         ))
                     }

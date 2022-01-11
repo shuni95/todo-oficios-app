@@ -46,5 +46,7 @@ export function useFetchEspecialidades() {
         } else {
             setEspecialidades(cachedData['especialidades']);
         }
-    });
+    }, []);
+
+    return especialidades;  
 }

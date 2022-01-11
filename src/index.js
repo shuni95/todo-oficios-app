@@ -10,6 +10,7 @@ import Layout from './Layout';
 import { JoinPro } from './JoinPro';
 import { Professional } from './Professional';
 import { SearchResults } from './SearchResults';
+import { Proyecto } from './Proyecto';
 
 render(
     <BrowserRouter>
@@ -20,7 +21,8 @@ render(
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<UserRegister/>}/>
           <Route path="/joinPro" element={<JoinPro/>}/>
-          <Route path="/professional/:proId" element={<Professional/>} />
+          <Route path="/professional/:proId" element={<Professional/>}/>
+          <Route path="/nuevoProyecto" element={<Proyecto/>}/>
         </Routes>
       </Layout>
     </BrowserRouter>,
