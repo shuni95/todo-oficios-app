@@ -30,7 +30,7 @@ export function Professional() {
                 </div>
                 <div className="mt-4">
                     <Link className="uppercase bg-gray-700 px-4 py-1 text-white" to={`/busqueda?especialidad=${searchParams.get('especialidad')}&distrito=${searchParams.get('distrito')}`}>Regresar</Link>
-                    <Link className="ml-2 uppercase bg-emerald-600 text-white px-4 py-1" to={`/nuevoProyecto?profesional=${params.proId}&usuario=1&especialidad=${searchParams.get('especialidad')}&distrito=${searchParams.get('distrito')}`}>Solicitar proyecto</Link>
+                    <Link className="ml-2 uppercase bg-emerald-600 text-white px-4 py-1" to={`/nuevoProyecto?trabajador=${params.proId}&cliente=1&especialidad=${searchParams.get('especialidad')}&distrito=${searchParams.get('distrito')}`}>Solicitar proyecto</Link>
                 </div>
             </div>
 

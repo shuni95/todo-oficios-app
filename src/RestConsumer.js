@@ -30,23 +30,28 @@ export function useFetchDistritos() {
 
 export function useFetchEspecialidades() {
     const [especialidades, setEspecialidades] = useState([]);
+    const [errorFetchChecker, setErrorFetchChecker] = useState(0);
 
     useEffect(() => {
+        console.info(cachedData.hasOwnProperty('especialidades'));
         if (!cachedData.hasOwnProperty('especialidades')) {
             fetch(process.env.REACT_APP_BASE_URL + '/api/especialidades')
             .then(response => response.json())
             .then(results => {
+                console.info(typeof results);
                 if (results.length > 0) {
                     cachedData['especialidades'] = results;
                 }
                 setEspecialidades(results);
             }, error => {
-                console.error(error);
+                if (errorFetchChecker < 5) { 
+                    setErrorFetchChecker(errorFetchChecker + 1);
+                }
             });
         } else {
             setEspecialidades(cachedData['especialidades']);
         }
-    }, []);
+    }, [errorFetchChecker]);
 
     return especialidades;  
 }
