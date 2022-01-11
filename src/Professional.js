@@ -7,24 +7,36 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react/cjs/react.development";
+import { useEffect } from "react";
 
 export function Professional() {
     let params = useParams();
     let [searchParams, setSearchParams] = useSearchParams();
+    let [trabajador, setTrabajador] = useState({});
+    
+    useEffect(() => {
+        fetch(process.env.REACT_APP_BASE_URL + '/api/trabajadores/' + params.proId)
+        .then(response => response.json())
+        .then(results => {
+            console.info(results[0]);
+            setTrabajador(results[0]);
+        });        
+    }, [])
 
     return (
         <section className="flex flex-col h-full bg-gray-200 pt-6 xl:px-[150px] overflow-y-scroll">
             <div className="bg-white mt-4 p-8 xl:w-1/2">
                 <div className="flex flex-row">
-                    <h1 className="text-2xl font-bold uppercase">Antonio Vargas</h1>    
+                    <h1 className="text-2xl font-bold uppercase">{trabajador.nombreTrabajador} {trabajador.apellidoTrabajador}</h1>    
                     
                 </div>
                 <div className="flex flex-row">
                     <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>Gasfitero</p>
                 </div>
                 <div>
-                    <p className='mt-2'><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className='ml-2'>El Agustino - </span><FontAwesomeIcon icon={faPhone} color='blue'/> <span className='ml-2'>989101989</span></p>
-                    <p><FontAwesomeIcon icon={faBuilding}/> <span className='ml-2'>Mz A Lt 21 Av. San Jeronimo</span></p>
+                    <p className='mt-2'><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className='ml-2'>El Agustino - </span><FontAwesomeIcon icon={faPhone} color='blue'/> <span className='ml-2'>{trabajador.telefono}</span></p>
+                    <p><FontAwesomeIcon icon={faBuilding}/> <span className='ml-2'>{trabajador.direccion}</span></p>
                     <p><FontAwesomeIcon icon={faEnvelope} color='silver'/> <span className='ml-2'>avargas@gmail.com</span></p>
                     <p className='mt-2'>Ofrezco servicio de gasfitería y electricidad, reparación e instalación de calefacción, destape de cámara de alcantarillado y cañerias de desague, especialista en pvc. Interesados llamar al 989101989.</p>
                 </div>
