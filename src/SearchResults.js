@@ -81,7 +81,7 @@ export function SearchResults() {
                         </div>
                         <div className='mt-2 flex flex-row'>
                             <p className='text-gray-700 border border-solid border-black px-3 py-1'>{trabajador.nombreEspecialidad}</p>
-                            <Link className='uppercase bg-red-700 px-4 py-1 text-white ml-auto xl:ml-8' to={`/professional/1?especialidad=${searchParams.get('especialidad')}&distrito=${searchParams.get('distrito')}`}>Ver perfil</Link>
+                            <Link className='uppercase bg-red-700 px-4 py-1 text-white ml-auto xl:ml-8' to={`/professional/${trabajador.idTrabajador}?especialidad=${searchParams.get('especialidad')}&distrito=${searchParams.get('distrito')}`}>Ver perfil</Link>
                         </div>
                     </div>
                 ))}

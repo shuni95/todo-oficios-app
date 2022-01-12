@@ -35,10 +35,10 @@ export function Professional() {
                     <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>Gasfitero</p>
                 </div>
                 <div>
-                    <p className='mt-2'><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className='ml-2'>El Agustino - </span><FontAwesomeIcon icon={faPhone} color='blue'/> <span className='ml-2'>{trabajador.telefono}</span></p>
+                    <p className='mt-2'><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className='ml-2'>{trabajador.nombreDistrito} - </span><FontAwesomeIcon icon={faPhone} color='blue'/> <span className='ml-2'>{trabajador.telefono}</span></p>
                     <p><FontAwesomeIcon icon={faBuilding}/> <span className='ml-2'>{trabajador.direccion}</span></p>
-                    <p><FontAwesomeIcon icon={faEnvelope} color='silver'/> <span className='ml-2'>avargas@gmail.com</span></p>
-                    <p className='mt-2'>Ofrezco servicio de gasfitería y electricidad, reparación e instalación de calefacción, destape de cámara de alcantarillado y cañerias de desague, especialista en pvc. Interesados llamar al 989101989.</p>
+                    <p><FontAwesomeIcon icon={faEnvelope} color='silver'/> <span className='ml-2'>{trabajador.correo}</span></p>
+                    <p className='mt-2'>{trabajador.sobreMi}</p>
                 </div>
                 <div className="mt-4">
                     <Link className="uppercase bg-gray-700 px-4 py-1 text-white" to={`/busqueda?especialidad=${searchParams.get('especialidad')}&distrito=${searchParams.get('distrito')}`}>Regresar</Link>
