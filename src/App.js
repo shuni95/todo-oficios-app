@@ -48,7 +48,7 @@ export function App() {
           </form>
         </div>
       </section>
-      <div className='invisible md:visible absolute bottom-[55px] left-[-65px]'>
+      <div className='invisible md:visible absolute bottom-[0px] left-[-65px]'>
         <img src={landingImage} alt="Imagen de landing de un detective"/>
       </div>
     </div>
