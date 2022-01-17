@@ -21,7 +21,7 @@ export function SearchResults() {
         .then(results => {
             console.info(results);
             const newResultados = results.filter(r => r.distrito === parseInt(distrito) && r.idEspecialidad === parseInt(especialidad))
-
+            
             setResultados(newResultados);
         });        
     }, [distrito, especialidad])

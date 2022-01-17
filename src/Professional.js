@@ -14,25 +14,34 @@ export function Professional() {
     let params = useParams();
     let [searchParams, setSearchParams] = useSearchParams();
     let [trabajador, setTrabajador] = useState({});
+    let [especialidades, setEspecialidades] = useState([]);
+    let [proyectos, setProyectos] = useState([]);
     
     useEffect(() => {
         fetch(process.env.REACT_APP_BASE_URL + '/api/trabajadores/' + params.proId)
         .then(response => response.json())
         .then(results => {
-            console.info(results[0]);
             setTrabajador(results[0]);
-        });        
+            setEspecialidades(JSON.parse(results[0].especialidades));
+        });
+
+        fetch(process.env.REACT_APP_BASE_URL + '/api/trabajadores/' + params.proId + '/proyectos')
+        .then(response => response.json())
+        .then(results => {
+            setProyectos(results);
+        });
     }, [])
 
     return (
         <section className="flex flex-col h-full bg-gray-200 pt-6 xl:px-[150px] overflow-y-scroll">
             <div className="bg-white mt-4 p-8 xl:w-1/2">
                 <div className="flex flex-row">
-                    <h1 className="text-2xl font-bold uppercase">{trabajador.nombreTrabajador} {trabajador.apellidoTrabajador}</h1>    
-                    
+                    <h1 className="text-2xl font-bold uppercase">{trabajador.nombreTrabajador} {trabajador.apellidoTrabajador}</h1>
                 </div>
-                <div className="flex flex-row">
-                    <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>Gasfitero</p>
+                <div className="flex flex-row space-x-4">
+                    {especialidades.map(e => (
+                        <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>{e.nombre}</p>    
+                    ))}
                 </div>
                 <div>
                     <p className='mt-2'><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className='ml-2'>{trabajador.nombreDistrito} - </span><FontAwesomeIcon icon={faPhone} color='blue'/> <span className='ml-2'>{trabajador.telefono}</span></p>
@@ -50,50 +59,19 @@ export function Professional() {
                 <div className="mt-2">
                     <h2 className="text-xl font-bold uppercase">Ultimos trabajos</h2>
                 </div>
+                {proyectos.map(p => (
                 <div>
                     <div className="flex flex-row">
-                        <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>Gasfitero</p>
+                        <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>{p.nombreEspecialidad}</p>
                     </div>
                     <div className="mt-2">
-                        <p><FontAwesomeIcon icon={faCheckCircle} color="green"/><span className="ml-2">Comentario: Buen trato y puntual. 10/10.</span></p>
-                        <p><FontAwesomeIcon icon={faCalendar} color="purple"/> <span className="ml-2">Fecha: 02/01/2022</span></p>
-                        <p><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className="ml-2">Callao</span></p>
-                        <p><FontAwesomeIcon icon={faUser}/> <span className="ml-2">Piero Loza Palma</span></p>
+                        <p><FontAwesomeIcon icon={faCheckCircle} color="green"/><span className="ml-2">Comentario: {p.comentarioCliente}</span></p>
+                        <p><FontAwesomeIcon icon={faCalendar} color="purple"/> <span className="ml-2">Fecha: {p.fecha}</span></p>
+                        <p><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className="ml-2">{trabajador.nombreDistrito}</span></p>
+                        <p><FontAwesomeIcon icon={faUser}/> <span className="ml-2">{p.nombreCliente}</span></p>
                     </div>
                 </div>
-                <div>
-                    <div className="flex flex-row">
-                        <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>Gasfitero</p>
-                    </div>
-                    <div className="mt-2">
-                        <p><FontAwesomeIcon icon={faCheckCircle} color="green"/><span className="ml-2">Comentario: Buen trato y puntual. 10/10.</span></p>
-                        <p><FontAwesomeIcon icon={faCalendar} color="purple"/> <span className="ml-2">Fecha: 02/01/2022</span></p>
-                        <p><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className="ml-2">Callao</span></p>
-                        <p><FontAwesomeIcon icon={faUser}/> <span className="ml-2">Piero Loza Palma</span></p>
-                    </div>
-                </div>
-                <div>
-                    <div className="flex flex-row">
-                        <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>Gasfitero</p>
-                    </div>
-                    <div className="mt-2">
-                        <p><FontAwesomeIcon icon={faCheckCircle} color="green"/><span className="ml-2">Comentario: Buen trato y puntual. 10/10.</span></p>
-                        <p><FontAwesomeIcon icon={faCalendar} color="purple"/> <span className="ml-2">Fecha: 02/01/2022</span></p>
-                        <p><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className="ml-2">Callao</span></p>
-                        <p><FontAwesomeIcon icon={faUser}/> <span className="ml-2">Piero Loza Palma</span></p>
-                    </div>
-                </div>
-                <div>
-                    <div className="flex flex-row">
-                        <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>Gasfitero</p>
-                    </div>
-                    <div className="mt-2">
-                        <p><FontAwesomeIcon icon={faCheckCircle} color="green"/><span className="ml-2">Comentario: Buen trato y puntual. Luego hicimos el sinrespeto y cumplio. 10/10.</span></p>
-                        <p><FontAwesomeIcon icon={faCalendar} color="purple"/> <span className="ml-2">Fecha: 02/01/2022</span></p>
-                        <p><FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className="ml-2">Callao</span></p>
-                        <p><FontAwesomeIcon icon={faUser}/> <span className="ml-2">Piero Loza Palma</span></p>
-                    </div>
-                </div>
+                ))}
             </div>
         </section>
     )
