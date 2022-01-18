@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react/cjs/react.development";
 import useFetch from "./RestConsumer";
 
@@ -86,24 +87,17 @@ export function UserRegister() {
                 "password": password.value,
             }
     
-            fetch(process.env.REACT_APP_BASE_URL + '/api/clientes', {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify(data),
+            axios.post(process.env.REACT_APP_BASE_URL + '/api/clientes', data)
+            .then(response => {
+                alert(response.data.message);
             })
-            .then(response => response.json())
-            .then(
-                json => {
-                    console.info(json);
-                    if (json.message) alert("OK");
-                    else alert('Failed');
-                }, 
-                _ => {
-                    alert("F");
+            .catch(error => {
+                if (error.response) {
+                    if (error.response.status >= 400) {
+                        alert(error.response.data.message);
+                    }
                 }
-            );
+            })
         }
     }
 
