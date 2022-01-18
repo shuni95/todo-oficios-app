@@ -10,7 +10,7 @@ export function JoinPro() {
     const dni = useFormInput("");
     const telefono = useFormInput("");
     const direccion = useFormInput("");
-    const descripcion = useFormInput("");
+    const sobreMi = useFormInput("");
     const distrito = useFormInput("");
     let [especialidadesSeleccionadas, setEspecialidadesSeleccionadas] = useState([]);
 
@@ -49,6 +49,7 @@ export function JoinPro() {
             "direccion": direccion.value,
             "distrito": distrito.value,
             "telefono": telefono.value,
+            'sobreMi': sobreMi.value,
             "especialidades": especialidadesData,
         }
 
@@ -107,8 +108,8 @@ export function JoinPro() {
                     </div>
 
                     <div className="flex flex-col w-full">
-                        <label htmlFor="descripcion">Sobre mi</label>
-                        <textarea name="descripcion" rows="4" {...descripcion}></textarea>
+                        <label htmlFor="sobreMi">Sobre mi</label>
+                        <textarea name="sobreMi" rows="4" {...sobreMi}></textarea>
                     </div>
 
                     <div className="flex flex-col w-full">

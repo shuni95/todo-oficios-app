@@ -28,7 +28,8 @@ main {
 @layer base {
 
   [type="text"],
-  [type="password"], 
+  [type="password"],
+  [type="email"], 
   textarea,
   select,
   select[multiple] {
