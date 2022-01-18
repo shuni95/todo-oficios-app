@@ -11,11 +11,13 @@ export function Proyecto() {
     let [especialidadChecker, setEspecialidadChecker] = useState(false);
     
     useEffect(() => {
-        const esp = especialidades.find(e => e.idEspecialidad === parseInt(searchParams.get('especialidad')))
-        if (esp) {
-            setEspecialidad(esp.nombreEspecialidad);
-        } else {
-            setEspecialidadChecker(c => !c);
+        if (searchParams.get('especialidad')) { 
+            const esp = especialidades.find(e => e.idEspecialidad === parseInt(searchParams.get('especialidad')))
+            if (esp) {
+                setEspecialidad(esp.nombreEspecialidad);
+            } else {
+                setEspecialidadChecker(c => !c);
+            }
         }
     }, [especialidadChecker]); 
 

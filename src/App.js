@@ -12,6 +12,11 @@ export function App() {
   let [especialidad, setEspecialidad] = useState();
   let [distrito, setDistrito] = useState();
   
+  const submitHandler = e => {
+      e.preventDefault();
+
+      navigate(`/busqueda?distrito=${distrito ? distrito : ''}&especialidad=${especialidad ? especialidad : ''}`);
+  }
 
   return (
     <div className="flex flex-col h-full">
@@ -21,7 +26,7 @@ export function App() {
           <h2 className='text-sm sm:text-xl font-light'>Encuentra profesionales confiables y seguros en el menor tiempo posible</h2>
         </div>
         <div className='flex flex-col items-center mt-4'>
-          <form className='flex space-y-4 md:space-y-0 flex-col md:flex-row w-full sm:w-3/5 md:w-1/2 justify-center' onSubmit={() => navigate(`/busqueda?distrito=${distrito}&especialidad=${especialidad}`)}>
+          <form className='flex space-y-4 md:space-y-0 flex-col md:flex-row w-full sm:w-3/5 md:w-1/2 justify-center' onSubmit={submitHandler}>
             <select className="w-full max-w-full md:max-w-[300px] mt-0 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" 
               name="especialidad" title="Especialidad" onChange={(e) => setEspecialidad(parseInt(e.target.value)) }>
               <option value="">Especialidad</option>
@@ -41,9 +46,7 @@ export function App() {
               }
             </select>
             <div className='ml-2'>
-              <button className='w-[100px] p-2 bg-emerald-400 text-white uppercase' onClick={event => {
-
-              }}>Buscar</button>
+              <button className='w-[100px] p-2 bg-emerald-400 text-white uppercase'>Buscar</button>
             </div>
           </form>
         </div>

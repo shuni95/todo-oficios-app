@@ -16,8 +16,10 @@ export function Professional() {
     let [trabajador, setTrabajador] = useState({});
     let [especialidades, setEspecialidades] = useState([]);
     let [proyectos, setProyectos] = useState([]);
+    const [usuario, setUsuario] = useState({})
     
     useEffect(() => {
+        // Obtener informacion del trabajador
         fetch(process.env.REACT_APP_BASE_URL + '/api/trabajadores/' + params.proId)
         .then(response => response.json())
         .then(results => {
@@ -25,11 +27,18 @@ export function Professional() {
             setEspecialidades(JSON.parse(results[0].especialidades));
         });
 
+        // Obtener proyectos
         fetch(process.env.REACT_APP_BASE_URL + '/api/trabajadores/' + params.proId + '/proyectos')
         .then(response => response.json())
         .then(results => {
             setProyectos(results);
         });
+
+        // Asignar usuario
+        const item = localStorage.getItem('usuario');
+        if (item) {
+            setUsuario(JSON.parse(item));    
+        }
     }, [])
 
     return (
@@ -40,7 +49,7 @@ export function Professional() {
                 </div>
                 <div className="flex flex-row space-x-4">
                     {especialidades.map(e => (
-                        <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>{e.nombre}</p>    
+                        <p key={e.id} className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>{e.nombre}</p>    
                     ))}
                 </div>
                 <div>
@@ -50,8 +59,12 @@ export function Professional() {
                     <p className='mt-2'>{trabajador.sobreMi}</p>
                 </div>
                 <div className="mt-4">
-                    <Link className="uppercase bg-gray-700 px-4 py-1 text-white" to={`/busqueda?especialidad=${searchParams.get('especialidad')}&distrito=${searchParams.get('distrito')}`}>Regresar</Link>
-                    <Link className="ml-2 uppercase bg-emerald-600 text-white px-4 py-1" to={`/nuevoProyecto?trabajador=${params.proId}&cliente=1&especialidad=${searchParams.get('especialidad')}&distrito=${searchParams.get('distrito')}`}>Solicitar proyecto</Link>
+                    <Link className="uppercase bg-gray-700 px-4 py-1 text-white" to={`/busqueda?especialidad=${searchParams.get('especialidad') ? searchParams.get('especialidad') : ''}&distrito=${searchParams.get('distrito') ? searchParams.get('distrito') : ''}`}>Regresar</Link>
+                    {
+                        Object.keys(usuario).length ? (
+                            <Link className="ml-2 uppercase bg-emerald-600 text-white px-4 py-1" to={`/nuevoProyecto?trabajador=${params.proId}&cliente=1&especialidad=${searchParams.get('especialidad') ? searchParams.get('especialidad') : ''}&distrito=${searchParams.get('distrito') ? searchParams.get('distrito') : ''}`}>Solicitar proyecto</Link>
+                        ) : <></>
+                    }
                 </div>
             </div>
 
@@ -60,7 +73,7 @@ export function Professional() {
                     <h2 className="text-xl font-bold uppercase">Ultimos trabajos</h2>
                 </div>
                 {proyectos.map(p => (
-                <div>
+                <div key={p.idProyecto}>
                     <div className="flex flex-row">
                         <p className='text-gray-700 border border-solid border-black px-3 py-1 text-center mt-2'>{p.nombreEspecialidad}</p>
                     </div>

@@ -19,10 +19,20 @@ export function SearchResults() {
         fetch(process.env.REACT_APP_BASE_URL + `/api/trabajadores?distrito=${distrito}&especialidad=${especialidad}`)
         .then(response => response.json())
         .then(results => {
-            console.info(results);
-            const newResultados = results.filter(r => r.distrito === parseInt(distrito) && r.idEspecialidad === parseInt(especialidad))
+            let nuevosResultados = results;
+            if (distrito) {
+                nuevosResultados = nuevosResultados.filter(r => r.distrito === parseInt(distrito));
+            }
+            if (especialidad) {
+                nuevosResultados = nuevosResultados.filter(r => r.idEspecialidad === parseInt(especialidad));
+            }
+
+            nuevosResultados = nuevosResultados.map(r => {
+                r.especialidades = JSON.parse(r.especialidades);
+                return r
+            })
             
-            setResultados(newResultados);
+            setResultados(nuevosResultados);
         });        
     }, [distrito, especialidad])
     
@@ -69,9 +79,9 @@ export function SearchResults() {
             <div className='flex flex-col sm:basis-3/5 lg:basis-full pb-20 space-y-4'>
                 <h2 className='text-xl font-bold pl-8'>Profesionales recomendados</h2>
                 {resultados.map(trabajador => (
-                    <div className='bg-white p-6 mx-8'>
+                    <div className='bg-white p-6 mx-8' key={trabajador.idTrabajador}>
                         <div>
-                            <h3 className='text-lg font-semibold text-blue-700'><Link to={`/professional/1`}>{trabajador.nombreTrabajador} {trabajador.apellidoTrabajador}</Link></h3>
+                            <h3 className='text-lg font-semibold text-blue-700'><Link to={`/professional/${trabajador.idTrabajador}`}>{trabajador.nombreTrabajador} {trabajador.apellidoTrabajador}</Link></h3>
                             <p className='mt-2'>
                                 <FontAwesomeIcon icon={faMapMarkerAlt} color='red'/> <span className='ml-2'>{distritos.find(d => d.idDistrito === trabajador.distrito).nombreDistrito} - </span><FontAwesomeIcon icon={faPhone} color='blue'/><span className='ml-2'>{trabajador.telefono}</span>
                             </p>
@@ -80,7 +90,9 @@ export function SearchResults() {
                             <p className='mt-2'>{trabajador.sobreMi}</p>
                         </div>
                         <div className='mt-2 flex flex-row'>
-                            <p className='text-gray-700 border border-solid border-black px-3 py-1'>{trabajador.nombreEspecialidad}</p>
+                            {trabajador.especialidades.map( (te, i) => (
+                                <p key={i} className='text-gray-700 border border-solid border-black px-3 py-1 mr-2'>{te.nombre}</p>
+                            ))}
                             <Link className='uppercase bg-red-700 px-4 py-1 text-white ml-auto xl:ml-8' to={`/professional/${trabajador.idTrabajador}?especialidad=${searchParams.get('especialidad')}&distrito=${searchParams.get('distrito')}`}>Ver perfil</Link>
                         </div>
                     </div>
