@@ -24,7 +24,9 @@ export function Header() {
         } else {
             const trabajadorItem = localStorage.getItem('trabajador');
 
-            setTrabajador(JSON.parse(trabajadorItem));
+            if (trabajadorItem) {
+                setTrabajador(JSON.parse(trabajadorItem));
+            }
         } 
     }, [])
 
