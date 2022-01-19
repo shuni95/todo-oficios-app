@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 export function Login () {
     const usuario = useFormInput("");
     const password = useFormInput("");
+    const [esTrabajador, setEsTrabajador] = useState(false);
     const [errorMessages, setErrorMessages] = useState({});
     let navigate = useNavigate();
 
@@ -37,14 +38,28 @@ export function Login () {
         setErrorMessages(localErrors);
 
         if (Object.keys(localErrors).length === 0) {
-            axios.get(process.env.REACT_APP_BASE_URL + '/api/clientesLogin/' + usuario.value + '/' + password.value)
-            .then(response => {
-                localStorage.setItem('usuario', JSON.stringify(response.data[0]));
+            if (!esTrabajador) {
+                axios.get(process.env.REACT_APP_BASE_URL + '/api/clientesLogin/' + usuario.value + '/' + password.value)
+                .then(response => {
+                    localStorage.setItem('usuario', JSON.stringify(response.data[0]));
 
-                navigate('/');
-                window.location.reload(false);
-            })
+                    navigate('/');
+                    window.location.reload(false);
+                })
+            } else {
+                axios.get(process.env.REACT_APP_BASE_URL + '/api/trabajadoresLogin/' + usuario.value + '/' + password.value)
+                .then(response => {
+                    localStorage.setItem('trabajador', JSON.stringify(response.data[0]));
+
+                    navigate('/');
+                    window.location.reload(false);
+                })
+            }
         }
+    }
+
+    const handleCheckbox = e => {
+        setEsTrabajador(e.target.checked);
     }
 
     return (
@@ -61,6 +76,10 @@ export function Login () {
                     <div className="flex flex-col mt-8">
                         <input type="password" className="border-t-0 border-x-0 border-b-2" name="password" placeholder="Password" {...password}/>
                         <span className="text-red-600 text-xs">{errorMessages['password'] ? errorMessages['password'] : '' }</span>
+                    </div>
+                    <div className="flex flex-row justify-end mt-4">
+                        <input className="w-6 h-6" type="checkbox" name="esTrabajador" onChange={handleCheckbox}/> 
+                        <span className="ml-2">¿Es trabajador?</span>
                     </div>
                     <div className="flex flex-row mt-10 justify-center">
                         <button className='w-[200px] text-lg p-2 bg-emerald-400 text-white uppercase rounded-full select-none'>Ingresar</button>

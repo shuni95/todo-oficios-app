@@ -13,6 +13,7 @@ import { SearchResults } from './SearchResults';
 import { Proyecto } from './Proyecto';
 import { Perfil } from './Perfil';
 import { UsuarioProyecto } from './UsuarioProyecto';
+import { TrabajadorProyecto } from './TrabajadorProyecto';
 
 render(
     <BrowserRouter>
@@ -27,6 +28,7 @@ render(
           <Route path="/nuevoProyecto" element={<Proyecto/>}/>
           <Route path="/perfil" element={<Perfil/>}/>
           <Route path="/proyectosUsuario" element={<UsuarioProyecto/>}/>
+          <Route path="/proyectosTrabajador" element={<TrabajadorProyecto/>}/>
         </Routes>
       </Layout>
     </BrowserRouter>,
