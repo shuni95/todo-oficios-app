@@ -10,12 +10,6 @@ code {
     monospace;
 }
 
-html, body, #root {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
 main {
   height: 100%;
   overflow: hidden;
@@ -39,6 +33,10 @@ main {
   [type="radio"],
   [type="checkbox"] {
     @apply border-amber-400 focus:ring-amber-500 text-amber-400;
+  }
+
+  html, body, #root {
+    @apply flex flex-col min-h-full bg-amber-200;
   }
 
 }

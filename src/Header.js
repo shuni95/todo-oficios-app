@@ -29,12 +29,6 @@ export function Header() {
         setUsuario({});
     }
 
-    const toggleMenu = e => {
-        e.preventDefault();
-
-        setMenuOpened(e => !e);
-    }
-
     return (
         <header className='p-2 sm:p-4 bg-amber-200 flex items-center'>
             <div className='w-1/2 inline-flex justify-start'>
