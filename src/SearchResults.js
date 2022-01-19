@@ -24,7 +24,12 @@ export function SearchResults() {
                 nuevosResultados = nuevosResultados.filter(r => r.distrito === parseInt(distrito));
             }
             if (especialidad) {
-                nuevosResultados = nuevosResultados.filter(r => r.idEspecialidad === parseInt(especialidad));
+                const iEspecialidad = parseInt(especialidad);
+                nuevosResultados = nuevosResultados.filter(r => {
+                    const tempEsp = JSON.parse(r.especialidades);
+
+                    return tempEsp.filter(e => e.id === iEspecialidad).length > 0;
+                });
             }
 
             nuevosResultados = nuevosResultados.map(r => {
@@ -37,7 +42,7 @@ export function SearchResults() {
     }, [distrito, especialidad])
     
     return (
-        <section className='flex flex-row h-full bg-gray-200 pt-8 xl:px-[150px] overflow-y-scroll'>
+        <section className='flex flex-row h-full bg-gray-200 pt-8 xl:px-[150px]'>
             <div className='flex flex-col sm:basis-2/5 lg:max-w-[320px] px-4 md:px-8'>
                 <form className='flex flex-col' onSubmit={() => setSearchParams({'distrito': distrito, 'especialidad': especialidad})}>
                 <h2 className='text-xl font-semibold'>Filtros</h2>
