@@ -40,7 +40,7 @@ export function Login () {
             axios.get(process.env.REACT_APP_BASE_URL + '/api/clientesLogin/' + usuario.value + '/' + password.value)
             .then(response => {
                 localStorage.setItem('usuario', JSON.stringify(response.data[0]));
-                
+
                 navigate('/');
                 window.location.reload(false);
             })

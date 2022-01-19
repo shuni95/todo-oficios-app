@@ -11,6 +11,7 @@ import { JoinPro } from './JoinPro';
 import { Professional } from './Professional';
 import { SearchResults } from './SearchResults';
 import { Proyecto } from './Proyecto';
+import { Perfil } from './Perfil';
 
 render(
     <BrowserRouter>
@@ -23,6 +24,7 @@ render(
           <Route path="/joinPro" element={<JoinPro/>}/>
           <Route path="/professional/:proId" element={<Professional/>}/>
           <Route path="/nuevoProyecto" element={<Proyecto/>}/>
+          <Route path="/perfil" element={<Perfil/>}/>
         </Routes>
       </Layout>
     </BrowserRouter>,

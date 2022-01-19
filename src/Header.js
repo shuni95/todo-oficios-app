@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import landingIcon from './landing-icon.png';
 
 import { Link } from 'react-router-dom';
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 
@@ -42,7 +42,7 @@ export function Header() {
                     (
                     <div className='invisible md:visible w-1/2 inline-flex justify-end items-center'>
                         <Link className="py-2 px-3 bg-amber-400 text-black rounded-full" to="/joinPro">Quiero chambear!</Link>
-                        <Link className="py-2 px-3 text-black uppercase font-semibold" to="/">{usuario.nombreCliente} {usuario.apellidosCliente}</Link>
+                        <Link className="py-2 px-3 text-black uppercase font-semibold" to="/perfil">{usuario.nombreCliente} {usuario.apellidosCliente}</Link>
                         <button onClick={handleLogout}><FontAwesomeIcon icon={faPowerOff} color="red"/></button>
                     </div>
                     )
