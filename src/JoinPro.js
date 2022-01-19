@@ -12,6 +12,7 @@ export function JoinPro() {
     const direccion = useFormInput("");
     const sobreMi = useFormInput("");
     const distrito = useFormInput("");
+    const correo = useFormInput("");
     let [especialidadesSeleccionadas, setEspecialidadesSeleccionadas] = useState([]);
     const [errorMessages, setErrorMessages] = useState({});
 
@@ -67,6 +68,10 @@ export function JoinPro() {
             localErrors['telefono'] = 'El campo Telefono es requerido.';
         }
 
+        if (!correo.value) {
+            localErrors['correo'] = 'El campo Correo electrónico es requerido.';
+        }
+
         if (!sobreMi.value) {
             localErrors['sobreMi'] = 'El campo Sobre Mi es requerido.';
         }
@@ -87,6 +92,7 @@ export function JoinPro() {
                 "telefono": telefono.value,
                 'sobreMi': sobreMi.value,
                 "especialidades": especialidadesData,
+                "correo": correo.value,
             }
 
             fetch(process.env.REACT_APP_BASE_URL + '/api/trabajadores', {
@@ -147,6 +153,12 @@ export function JoinPro() {
                         <label htmlFor="direccion">Direccion</label>
                         <input type="text" name="direccion" placeholder="Direccion" {...direccion}/>
                         <span className="text-red-600 text-xs">{errorMessages['direccion'] ? errorMessages['direccion'] : '' }</span>
+                    </div>
+
+                    <div className="flex flex-col w-full">
+                        <label htmlFor="correo">Correo</label>
+                        <input type="text" name="correo" placeholder="Correo electrónico" {...correo}/>
+                        <span className="text-red-600 text-xs">{errorMessages['correo'] ? errorMessages['correo'] : '' }</span>
                     </div>
 
                     <div className="flex flex-col w-full">
