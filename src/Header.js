@@ -20,11 +20,13 @@ export function Header() {
         const usuarioItem = localStorage.getItem('usuario');
 
         if (usuarioItem) {
-            setUsuario(JSON.parse(usuarioItem));    
+            setUsuario(JSON.parse(usuarioItem));
+            setTrabajador("");
         } else {
             const trabajadorItem = localStorage.getItem('trabajador');
 
             if (trabajadorItem) {
+                setUsuario("");
                 setTrabajador(JSON.parse(trabajadorItem));
             }
         } 
